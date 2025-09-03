@@ -75,10 +75,8 @@ final class Joomdlejoomlafieldsprofile extends CMSPlugin implements SubscriberIn
     // Joomdle events
     public function onGetAdditionalDataSource(Event $event)
     {
-        // FIXME ver esto como queda cuando tenga otro plugin
+        // FIXME Check how this looks when we have more than one plugin
         $event->setArgument('results', [[$this->additional_data_source => "Joomla Fields"]]);
-//        $option['joomlafields'] = "Joomla Fields";
- //       return $option;
     }
 
     public function onJoomdleGetFields(Event $event)
@@ -305,8 +303,8 @@ final class Joomdlejoomlafieldsprofile extends CMSPlugin implements SubscriberIn
     }
 
     // Admin profile URL
-    // FIXME event param, hacer cd pruebe eso q no m
-    // XXX puede que ya no la usemos
+    // FIXME Use event param
+    // XXX We may not be using it anymore
     public function onJoomdleGetProfileUrl($user_id)
     {
         if (!$this->integrationEnabled()) {
