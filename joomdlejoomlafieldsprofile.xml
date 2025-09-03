@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="joomdleprofile" method="upgrade" version="5.0">
+    <name>plg_joomdleprofile_joomdlejoomlafieldsprofile</name>
+    <author>Antonio Duran</author>
+    <creationDate>2017-01</creationDate>
+    <license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+    <version>2.0.0</version>
+    <description>PLG_JOOMDLEPROFILE_JOOMLAFIELDSPROFILE_XML_DESCRIPTION</description>
+    <namespace path="src">Joomla\Plugin\Joomdleprofile\Joomdlejoomlafieldsprofile</namespace>
+
+    <files>
+        <folder plugin="joomdlejoomlafieldsprofile">services</folder>
+        <folder>src</folder>
+    </files>
+
+    <languages>
+        <language tag="en-GB">language/en-GB/plg_joomdleprofile_joomdlejoomlafieldsprofile.ini</language>
+        <language tag="en-GB">language/en-GB/plg_joomdleprofile_joomdlejoomlafieldsprofile.sys.ini</language>
+    </languages>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+            </fieldset>
+        </fields>
+    </config>
+</extension>
+
