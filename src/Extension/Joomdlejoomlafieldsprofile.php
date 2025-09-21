@@ -85,8 +85,6 @@ final class Joomdlejoomlafieldsprofile extends CMSPlugin implements SubscriberIn
     public function onJoomdleGetFields(Event $event)
     {
         if (!$this->integrationEnabled()) 
-
-
         {
             return array ();
         }
