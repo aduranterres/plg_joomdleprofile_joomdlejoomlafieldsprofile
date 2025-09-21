@@ -86,6 +86,7 @@ final class Joomdlejoomlafieldsprofile extends CMSPlugin implements SubscriberIn
     {
         if (!$this->integrationEnabled()) 
 
+
         {
             return array ();
         }
