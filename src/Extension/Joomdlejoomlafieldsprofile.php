@@ -46,14 +46,13 @@ final class Joomdlejoomlafieldsprofile extends CMSPlugin implements SubscriberIn
     public static function getSubscribedEvents(): array
     {
         return [
-            'onGetAdditionalDataSource' => 'onGetAdditionalDataSource',
+            'onJoomdleGetAdditionalDataSource' => 'onJoomdleGetAdditionalDataSource',
             'onJoomdleGetFields' => 'onJoomdleGetFields',
             'onJoomdleGetFieldName' => 'onJoomdleGetFieldName',
             'onJoomdleGetUserInfo' => 'onJoomdleGetUserInfo',
             'onJoomdleCreateAdditionalProfile' => 'onJoomdleCreateAdditionalProfile',
             'onJoomdleSaveUserInfo' => 'onJoomdleSaveUserInfo',
-            'onJoomdleGetProfileUrl' => 'onJoomdleGetProfileUrl',
-            'getJoomdleLoginUrl' => 'getJoomdleLoginUrl',
+            'onJoomdleGetLoginUrl' => 'onJoomdleGetLoginUrl',
         ];
     }
 
@@ -73,17 +72,20 @@ final class Joomdlejoomlafieldsprofile extends CMSPlugin implements SubscriberIn
     }
 
     // Joomdle events
-    public function onGetAdditionalDataSource(Event $event)
+    public function onJoomdleGetAdditionalDataSource(Event $event)
     {
-        // FIXME Check how this looks when we have more than one plugin
-        $event->setArgument('results', [[$this->additional_data_source => "Joomla Fields"]]);
+        // Add to results instead of setting the value, so we can see the data returned by several plugins
+        $results = $event->getArgument('results') ?? [];
+
+        $results[] = [$this->additional_data_source => "Joomla Fields"];
+
+        $event->setArgument('results', $results);
     }
 
     public function onJoomdleGetFields(Event $event)
     {
-        if (!$this->integrationEnabled()) {
+        if (!$this->integrationEnabled()) 
             return array ();
-        }
 
         $fields = array ();
 
@@ -302,21 +304,7 @@ final class Joomdlejoomlafieldsprofile extends CMSPlugin implements SubscriberIn
         return true;
     }
 
-    // Admin profile URL
-    // FIXME Use event param
-    // XXX We may not be using it anymore
-    public function onJoomdleGetProfileUrl($user_id)
-    {
-        if (!$this->integrationEnabled()) {
-            return false;
-        }
-
-        $url = "index.php?option=com_users&view=profile";
-
-        return $url;
-    }
-
-    public function getJoomdleLoginUrl(Event $event)
+    public function onJoomdleGetLoginUrl(Event $event)
     {
         if (!$this->integrationEnabled()) {
             return false;
